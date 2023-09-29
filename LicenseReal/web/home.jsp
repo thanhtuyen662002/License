@@ -182,7 +182,7 @@
                     </div>
 
                     <div class="menu">
-                        <a class="menu_items menu_items_active" to="/#">Home</a>
+                        <a class="menu_items " to="/#">Home</a>
                         <a class="menu_items" to="/#">Hỗ trợ</a>
                         <a class="menu_items" to="/#">Thông tin lý thuyết</a>
                         <a class="menu_items" to="/#">Lịch thi</a>

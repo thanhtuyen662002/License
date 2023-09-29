@@ -54,23 +54,23 @@
                         </a>
                         <!-- login form -->
                         <div class="d-flex align-items-center h-custom-2 pt-5 pt-xl-0 mt-xl-n5">
-                            <form style="width: 23rem;">
+                            <form action="MainController" method="POST" style="width: 23rem;">
                                 <h3 class="fw-normal mb-3 pb-3" style="font-size: 25px;">Chào mừng bạn đã quay trở lại!
                                 </h3>
                                 <div class="form-outline mb-4">
-                                    <label class="form-label" for="form2Example18">User ID</label>
-                                    <input type="email" id="form2Example18" class="form-control form-control-lg" />
+                                    <label class="form-label" for="form2Example18">Username</label>
+                                    <input name="username" type="text" id="form2Example18" class="form-control form-control-lg required" />
                                 </div>
 
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="form2Example28">Mật khẩu</label>
-                                    <input type="password" id="form2Example28" class="form-control form-control-lg" />
+                                    <input name="password" type="password" id="form2Example28" class="form-control form-control-lg required" />
                                 </div>
 
                                 <div class="pt-1 mb-4">
-                                    <button class="btn btn-info btn-lg btn-block" type="button">Đăng nhập</button>
+                                    <button type="submit" name="action" value="login"class="btn btn-info btn-lg btn-block" type="button">Đăng nhập</button>
                                 </div>
-                                <p>Chưa có tài khoản? <a href="#!" class="link-info">Đăng ký ngay</a></p>
+                                <p>Chưa có tài khoản? <a href="register.jsp" class="link-info">Đăng ký ngay</a></p>
                             </form>
                         </div>
                     </div>

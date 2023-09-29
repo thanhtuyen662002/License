@@ -310,7 +310,7 @@
                     </div>
 
                     <div class="menu">
-                        <a class="menu_items menu_items_active" href="home.jsp">Home</a>
+                        <a class="menu_items" href="home.jsp">Home</a>
                         <a class="menu_items" to="/#">Hỗ trợ</a>
                         <a class="menu_items" to="/#">Thông tin lý thuyết</a>
                         <a class="menu_items" to="/#">Lịch thi</a>
@@ -328,7 +328,7 @@
                 <form>
                     <div class="form-group">
                         <label for="fullname">Họ và tên:</label>
-                        <input type="text" id="fullname" class="form-control">
+                        <input type="text" id="fullname" class="form-control" value="${message}">
                     </div>
                     <div class="form-group">
                         <label for="license">Hạng xe thi:</label>
