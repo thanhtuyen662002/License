@@ -36,7 +36,7 @@ public class MainController extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             String action = request.getParameter("action");
             if (action == null || action.equals("")) {
-                url = "Home.jsp";
+                url = "home.jsp";
             } else if (action.equals("getItem")) {
                 url = "LoadItemServlet";
             } 
