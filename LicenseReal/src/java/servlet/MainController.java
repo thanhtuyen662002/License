@@ -39,7 +39,9 @@ public class MainController extends HttpServlet {
                 url = "home.jsp";
             } else if (action.equals("getItem")) {
                 url = "LoadItemServlet";
-            } 
+            } else if (action.equals("testExamServlet")){
+                url = "testExamServlet";
+            }
             RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);
         }

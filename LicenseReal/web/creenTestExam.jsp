@@ -303,46 +303,150 @@
         <div>
             <c:import url="homeHeader.jsp"/>
         </div>
+        <!-- màn hình thi thử -->
+        <div class="test-exam-screen">
+            <div class="main-container">
+                <div class="container">
+                    <div class="row">
+                        <c:forEach var="x" items="${listQuestions}">
+                        <!-- Phần bên trái: Chi tiết câu hỏi -->
+                        <div class="col-md-8 d-flex flex-column flex-start">
+                            <h3 class="question-text text-danger">Câu 1: ${x.question}</h3>
+                            <div class="d-flex question_picture">
+                                <img src="https://www.qualityformationsblog.co.uk/wp-content/uploads/2020/05/QCF-1-1--1200x900.jpg"
+                                     alt="question picture">
+                            </div>
+                            <div class="question-description">
+                                <p>A. 5</p>
+                                <p>B. 3</p>
+                                <p>C. 2</p>
+                            </div>
+                        </div>
+                        </c:forEach>
 
-        <!-- màn hình chọn thông tin thi thử -->
-        <div class="choose-exam-screen">
-            <div class="container">
-                <h1>Bắt đầu thi thử trắc nghiệm</h1>
-                <form action="testExamServlet" method="POST">
-                    <div class="form-group">
-                        <label for="fullname">Họ và tên:</label>
-                        <input type="text" id="fullname" class="form-control" name="name" required="">
+                        <!-- Phần bên phải: Tổng hợp câu hỏi và đồng hồ đếm ngược -->
+                        <div class="col-md-4">
+                            <div class="countdown d-flex justify-content-center align-items-center gap-2">
+                                <h3 class="countdown-title">Đồng hồ đếm ngược: </h3>
+                                <div id="timer" class="countdown-timer">20:00</div>
+                            </div>
+                            <div class="summary d-flex justify-content-center align-items-center py-3">
+                                <ul
+                                    class="summary-list d-flex justify-content-center align-items-center flex-wrap gap-3 mb-0">
+                                    <li>
+                                        Câu 1
+                                        <div class="d-flex" style="font-size:15px">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="question1"
+                                                       id="question1A" value="A">
+                                                <label class="form-check-label" for="question1A">
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="question1"
+                                                       id="question1B" value="B">
+                                                <label class="form-check-label" for="question1B">
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="question1"
+                                                       id="question1C" value="C">
+                                                <label class="form-check-label" for="question1C">
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="license">Hạng xe thi:</label>
-                        <select id="license" class="form-select" name="option" required="">
-                            <option selected disabled>Mở lựa chọn</option>
-                            <option value="B2">Ô tô hạng B2 - số sàn</option>
-<!--                            <option value="B2-manual">Ô tô hạng B1 - số sàn</option>
-                            <option value="B1-automatic">Ô tô hạng B1 - số tự động</option>
-                            <option value="C">Ô tô hạng C</option>
-                            <option value="A2">Xe máy hạng A1</option>
-                            <option value="A2">Xe máy hạng A2</option>
-                            <option value="D">Nâng hạng D</option>
-                            <option value="E">Nâng hạng E</option>
-                            <option value="FC">Nâng hạng F C</option>-->
-                        </select>
+                </div>
+            </div>
+            <!-- màn hình infor -->
+            <div class="extra-container">
+                <div class="row">
+                    <div class="info-user col-md-8 d-flex flex-row flex-wrap gap-3">
+                        <div class="avatar">
+                            <img src="https://www.cloud9salon.com/wp-content/uploads/2016/10/avatar.jpg">
+                        </div>
+                        <div class="detail-info">
+                            <p>Họ và tên: </p>
+                            <p>Hạng xe: </p>
+                            <p>Ngày thi: </p>
+                            <p>Trạng thái: </p>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="exam">Chọn đề thi:</label>
-                        <select id="exam" class="form-select" name="topic" required="">
-                            <option selected disabled>Mở lựa chọn</option>
-                            <option value="0">Chọn đề ngẫu nhiên</option>
-                            <c:forEach var="x" items="${topicID}">
-                                <option value="${x.topicID}">Đề thi số ${x.topicID}</option>
-                            </c:forEach>
-                        </select>
+                    <div class="submit-button col-md-4 d-flex justify-content-center">
+                        <button class="btn btn-primary" style="height: 50px">Kết thúc</button>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-start">Bắt đầu thi</button>
-                </form>
-
+                </div>
             </div>
         </div>
+
+        <!-- màn hình xử lý kết quả -->
+        <div class="result-screen d-none">
+            <h1>Kết quả</h1>
+            <p>Trả lời sai câu hỏi điểm Liệt: <span id="incorrectPoints">0</span></p>
+            <p>Số câu trả lời đúng: <span id="correctAnswers">0</span></p>
+            <p>Số câu trả lời sai: <span id="incorrectAnswers">0</span></p>
+            <p>Số câu chưa trả lời: <span id="unanswered">0</span></p>
+            <p id="resultMessage">Kết quả: Không đạt</p>
+            <button class="btn review-button">Xem lại bài thi</button>
+        </div>
+
+
+        <!-- code js -->
+        <script>
+            //xử lý sự kiện đếm giờ 
+            const timerElement = document.getElementById('timer');
+            let totalTimeInSeconds = 1200;
+
+            function updateTimer() {
+                const minutes = Math.floor(totalTimeInSeconds / 60);
+                const seconds = totalTimeInSeconds % 60;
+                timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+                        if (totalTimeInSeconds > 0) {
+                            totalTimeInSeconds--;
+                        } else {
+                            timerElement.textContent = "Hết thời gian";
+                        }
+                    }
+
+                    setInterval(updateTimer, 1000);
+
+                    //xử lý sự kiện khi chọn đáp án 
+                    const summaryItems = document.querySelectorAll('.summary-list li');
+
+                    summaryItems.forEach((item, index) => {
+                        item.addEventListener('click', function () {
+                            const inputs = item.querySelectorAll('input[type="radio"]');
+
+                            inputs.forEach((input) => {
+                                if (input.checked) {
+                                    item.classList.add('selected-answer');
+                                }
+                            });
+                        });
+                    });
+
+                    //xử lý sự kiện khi kết thúc 
+                    const submitButton = document.querySelector('.submit-button');
+                    const resultScreen = document.querySelector('.result-screen');
+
+                    submitButton.addEventListener('click', function (e) {
+                        resultScreen.classList.remove('d-none');
+                        testExamScreen.classList.add('d-none');
+                    });
+
+                    //xử lý sự kiện xem lại
+
+                    const reviewButton = document.querySelector('.review-button');
+                    reviewButton.addEventListener('click', function (e) {
+                        resultScreen.classList.add('d-none');
+                        testExamScreen.classList.remove('d-none');
+                    });
+        </script>
+
     </body>
 
 </html>
