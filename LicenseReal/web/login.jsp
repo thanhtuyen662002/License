@@ -58,7 +58,7 @@
                                 <h3 class="fw-normal mb-3 pb-3" style="font-size: 25px;">Chào mừng bạn đã quay trở lại!
                                 </h3>
                                 <div class="form-outline mb-4">
-                                    <label class="form-label" for="form2Example18">Username</label>
+                                    <label class="form-label" for="form2Example18">Tên tài khoản</label>
                                     <input name="username" type="text" id="form2Example18" class="form-control form-control-lg required" />
                                 </div>
 

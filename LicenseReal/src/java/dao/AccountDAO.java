@@ -50,9 +50,9 @@ public class AccountDAO extends DBUtils {
         }
         return null;
     }
-//    public static void main(String[] args) {
-//
-//        System.out.println(getAccount("username", "123").getId());
-//    }
+    public static void main(String[] args) {
+
+        System.out.println(createAccount("username", "123"));
+    }
 
 }

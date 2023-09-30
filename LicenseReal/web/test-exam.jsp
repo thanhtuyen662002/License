@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -314,8 +315,15 @@
                         <a class="menu_items" to="/#">Hỗ trợ</a>
                         <a class="menu_items" to="/#">Thông tin lý thuyết</a>
                         <a class="menu_items" to="/#">Lịch thi</a>
-                        <a class="menu_items" href="#">Thi thử trắc nghiệm</a>
-                        <a class="btn_login" href="login.jsp">Log in</a>
+                        <a class="menu_items" href="/#">Thi thử trắc nghiệm</a>
+                        <c:choose>
+                            <c:when test="${account != null}">
+                                ${account.getId()}
+                            </c:when>
+                            <c:otherwise>
+                                <a class="btn_login"  href="login.jsp">Log in</a>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                 </div>
             </div>

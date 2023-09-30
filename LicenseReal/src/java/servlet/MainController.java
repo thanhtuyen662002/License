@@ -29,6 +29,7 @@ public class MainController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     private String url = "errorpage.html";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -39,11 +40,14 @@ public class MainController extends HttpServlet {
                 url = "home.jsp";
             } else if (action.equals("getItem")) {
                 url = "LoadItemServlet";
-            } else if (action.equals("login")){
+            } else if (action.equals("login")) {
+                url = "AccountController";
+            } else if (action.equals("register")) {
                 url = "AccountController";
             }
-            RequestDispatcher rd = request.getRequestDispatcher(url);
-            rd.forward(request, response);
+            request.setAttribute("action", action);
+            request.getRequestDispatcher(url).forward(request, response);
+
         }
     }
 

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import dao.AccountDAO;
 import dto.Account;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -33,18 +34,45 @@ public class AccountController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         Account account = new Account();
-        String url = "test-exam.jsp";
+        String username;
+        String password;
+        String confirmPassword;
+        boolean check;
+        String url = "home.jsp";
         String message = "";
+        String action = request.getParameter("action");
+        HttpSession session = request.getSession();
         try {
-            String username = request.getParameter("username");
-            String password = request.getParameter("password");
-            account = AccountDAO.getAccount(username, password);
-            message = "Login sucessfully";
+            switch (action) {
+                case "login":
+                    username = request.getParameter("username");
+                    password = request.getParameter("password");
+                    account = AccountDAO.getAccount(username, password);
+                    message = "Đăng nhập thành công";
+                    
+                    break;
+                case "register":
+                    username = request.getParameter("username");
+                    password = request.getParameter("password");
+                    confirmPassword = request.getParameter("confirmPassword");
+                    if (!confirmPassword.equals(password)) {
+                        message = "Xác nhận mật khẩu sai";
+                        url = "register.jsp";
+                    } else {
+                        check = AccountDAO.createAccount(username, password);
+                        if (check) {
+                            message = "Đăng ký thành công";
+                        } else {
+                            message = "Đăng ký thất bại";
+                        }
+                    }
+                    break;
+            }
         } catch (Exception e) {
             message = "Incorrect password or username";
         } finally {
+            session.setAttribute("account", account);
             request.setAttribute("message", message);
-            request.setAttribute("account", account);
             request.getRequestDispatcher(url).forward(request, response);
         }
     }
